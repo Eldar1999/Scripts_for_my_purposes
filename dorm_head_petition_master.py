@@ -54,7 +54,7 @@ def create_petition(is_gender_male, group_num, name_str, room_num):
     pdf.cell(0, 28, txt="Староста общежития №7", ln=0, align="L")
     pdf.cell(-50, 28, txt="Э.Э. Абибулаев", ln=1, align="R")
 
-    pdf.output("%s.pdf" % name_str)
+    pdf.output(name="output/%s.pdf" % name_str)
 
 
 def main(argv):
@@ -68,7 +68,7 @@ def main(argv):
         args = parser.parse_args()
         create_petition(args.is_gender_male, args.group_num, args.full_name, args.room_num)
     else:
-        gender = True if input("Is gender male? (Y/n): ") in ("y","\n") else False
+        gender = True if input("Is gender male? (Y/n): ") in ("y","") else False
         name_str = input("Enter student full name: ")
         group_num = int(input("Enter student group number: "))
         room_num = int(input("Enter student room number: "))
