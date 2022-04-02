@@ -45,7 +45,7 @@ def create_petition(is_gender_male, group_num, name_str, room_num):
     pdf.ln()
     pdf.ln()
     pdf.multi_cell(0, 28, txt='"%d" %s %d г.' % (
-        datetime.date.today().day, months[datetime.date.today().month], datetime.date.today().year), align="L")
+        datetime.date.today().day, months[datetime.date.today().month - 1], datetime.date.today().year), align="L")
     pdf.ln()
     pdf.ln()
     pdf.ln()
@@ -68,11 +68,12 @@ def main(argv):
         args = parser.parse_args()
         create_petition(args.is_gender_male, args.group_num, args.full_name, args.room_num)
     else:
-        gender = True if input("Is gender male? (Y/n): ") in ("y","") else False
+        gender = True if input("Is gender male? (Y/n): ") in ("y", "") else False
         name_str = input("Enter student full name: ")
         group_num = int(input("Enter student group number: "))
         room_num = int(input("Enter student room number: "))
-        create_petition(gender,group_num, name_str, room_num)
+        create_petition(gender, group_num, name_str, room_num)
+
 
 if __name__ == "__main__":
     main(sys.argv)
